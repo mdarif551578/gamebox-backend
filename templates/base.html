@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/static/semantic.min.css">
+    <script src="/static/semantic.min.js"></script>
+
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <div style="margin: 50px; padding-bottom: 50px;" class="ui container">
+        <h1 class="ui center aligned header">Orders</h1>
+
+        {% for todo in todo_list %}
+        <div class="ui segment">
+            <p class="ui big header">{{ todo.selected_package_text }}</p>
+            <p class="ui p">Order Id: {{todo.id }}</p>
+            <p class="ui p">User Id: {{todo.user_id }}</p>
+            <p class="ui p">zone_id: {{todo.zone_id }}</p>
+            <p class="ui p">transaction_code: {{todo.transaction_code }}</p>
+
+            {% if todo.complete == False %}
+                <span class="ui gray label">Not Complete</span>
+            {% else %}
+                <span class="ui green label">Completed</span>
+            {% endif %}
+
+            <a class="ui blue button" href="update/{{ todo.id }}">Update</a>
+            <a class="ui red button" href="delete/{{ todo.id }}">Delete</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
